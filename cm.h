@@ -1,12 +1,11 @@
 
+#include <stddef.h>
 #include <stdint.h>
 
 typedef struct {
     int w, d;
     uint32_t **sk;
 } cmsketch_t;
-
-
 
 
 void sketch_add(cmsketch_t * cms, unsigned char *b, size_t len, uint32_t count);

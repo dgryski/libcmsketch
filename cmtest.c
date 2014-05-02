@@ -9,6 +9,11 @@
 
 int main(int argc, char *argv[]) {
 
+    if (argc != 3) {
+        printf("usage: %s testdata/domains.txt query\n", argv[0]);
+        exit(1);
+    }
+
     unsigned char line[MAXLINELEN];
     FILE *f = fopen(argv[1], "r");
     cmsketch_t *cms = sketch_new(1 << 10, 4);

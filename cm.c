@@ -166,7 +166,7 @@ static uint32_t jenkins_hash(unsigned char *b, size_t len)
 
     uint32_t h2 = 0;
 
-    for (int i = 0; i < len; i++) {
+    for (unsigned int i = 0; i < len; i++) {
 	h2 += b[i];
 	h2 += h2 << 10;
 	h2 ^= h2 >> 6;

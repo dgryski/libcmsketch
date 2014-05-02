@@ -1,0 +1,13 @@
+
+This is a minimal Count-Min sketch implementation.
+
+sketch_new()
+sketch_free()
+sketch_add()
+sketch_count()
+
+sketch_clone()
+sketch_merge()
+
+sketch_compress()
+sketch_values()

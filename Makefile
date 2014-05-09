@@ -8,10 +8,10 @@ SHAREDFLAGS = -shared
 SHAREDEXT = so
 endif
 
-LIB_SRC=cm.c
-LIB_HDR=cm.h
+LIB_SRC=cm.c bf.c hash.c
+LIB_HDR=cm.h bh.h hash.h
 LIB_OBJ=$(LIB_SRC:.c=.o)
-SO_OBJS=cm.o
+SO_OBJS=cm.o bf.o hash.o
 SO_NAME=libcmsketch.$(SHAREDEXT)
 ifneq ($(UNAME), Darwin)
     SHAREDFLAGS += -Wl,-soname,$(SO_NAME)
@@ -48,7 +48,7 @@ $(SO_NAME): $(LIB_OBJ)
 $(A_NAME): $(LIB_OBJ)
 	ar -r $(A_NAME) $(SO_OBJS)
 
-$(OUT): $(SO_NAME) $(A_NAME)
+$(OUT): $(SO_NAME) $(A_NAME) $(SRC)
 	$(CC) -c $(INCLUDES) $(CFLAGS) $(SRC) -o $(OBJ)
 	$(CC) $(OBJ) $(LDFLAGS) $(A_NAME) -o $(OUT)
 

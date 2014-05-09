@@ -1,5 +1,5 @@
 
-This is a minimal Count-Min sketch implementation.
+This is a minimal Count-Min sketch implementation:
 
 sketch_new()
 sketch_free()
@@ -11,3 +11,16 @@ sketch_merge()
 
 sketch_compress()
 sketch_values()
+
+And a minimal bloom-filter implementation:
+
+bfilter_new()
+bfilter_free()
+bfilter_add()
+bfilter_exists()
+
+bfilter_clone()
+bfilter_merge()
+
+bfilter_compress()
+bfilter_values()

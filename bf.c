@@ -28,9 +28,9 @@ bfilter_t *bfilter_new(int w, int h)
     bf->w = w;
     bf->h = h;
 
-    int words = (w+BITSPERWORD-1)/BITSPERWORD;
+    bf->blen = (w+BITSPERWORD-1)/BITSPERWORD;
 
-    bf->bits = calloc(words, sizeof(uint64_t));
+    bf->bits = calloc(bf->blen, sizeof(uint64_t));
 
     return bf;
 }
@@ -76,7 +76,7 @@ bfilter_t *bfilter_clone(bfilter_t * bf)
 
     bfilter_t *clone = bfilter_new(bf->w, bf->h);
 
-    memmove(clone->bits, bf->bits, bf->w * sizeof(uint64_t));
+    memmove(clone->bits, bf->bits, bf->blen * sizeof(uint64_t));
 
     return clone;
 }
@@ -87,7 +87,7 @@ void bfilter_merge(bfilter_t * bf1, bfilter_t * bf2)
     assert(bf1->w == bf2->w);
     assert(bf1->h == bf2->h);
 
-    for (int i = 0; i < bf1->w; i++) {
+    for (int i = 0; i < bf1->blen; i++) {
 	bf1->bits[i] |= bf2->bits[i];
     }
 }
@@ -99,10 +99,11 @@ void bfilter_compress(bfilter_t * bf)
 
     /* new width */
     bf->w /= 2;
+    bf->blen /= 2;
 
-    uint64_t *bits = calloc(bf->w, sizeof(uint64_t));
-    for (int i = 0; i < bf->w; i++) {
-	bits[i] = bf->bits[i] | bf->bits[bf->w + i];
+    uint64_t *bits = calloc(bf->blen, sizeof(uint64_t));
+    for (int i = 0; i < bf->blen; i++) {
+	bits[i] = bf->bits[i] | bf->bits[bf->blen + i];
     }
 
     free(bf->bits);

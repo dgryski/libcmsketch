@@ -4,6 +4,7 @@
 
 typedef struct {
     int w, h;
+    int blen;
     uint64_t *bits;
 } bfilter_t;
 

@@ -9,7 +9,7 @@ SHAREDEXT = so
 endif
 
 LIB_SRC=cm.c bf.c hash.c
-LIB_HDR=cm.h bh.h hash.h
+LIB_HDR=cm.h bf.h hash.h
 LIB_OBJ=$(LIB_SRC:.c=.o)
 SO_OBJS=cm.o bf.o hash.o
 SO_NAME=libcmsketch.$(SHAREDEXT)

@@ -23,4 +23,3 @@ bfilter_clone()
 bfilter_merge()
 
 bfilter_compress()
-bfilter_values()
